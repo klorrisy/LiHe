@@ -366,29 +366,36 @@
             </div>
 
             <style>
-/* 1. 彻底隐藏：头像、点赞相关、回复图标、标签 */
-.tk-avatar, .tk-submit-avatar, .tk-icon-like, .tk-action-count, .tk-action-icon, .tk-tag {
+/* 1. 彻底切除：头像、点赞图标、所有计数、标签 */
+.tk-avatar, .tk-submit-avatar, .tk-icon-like, .tk-action-count, .tk-tag {
   display: none !important;
 }
 
-/* 2. 内容靠左 */
+/* 2. 内容靠左：让评论文字不再给消失的头像留位置 */
 .tk-content {
   margin-left: 0 !important;
 }
 
-/* 3. 修饰“真回复”文字 */
+/* 3. 处理回复按钮：隐藏原本那个可能带图标的小方块，但保住点击功能 */
 .tk-action-link {
   display: inline-block !important;
   visibility: visible !important;
-  font-size: 0.85rem !important;
-  color: #4a90e2 !important;     /* 蓝色看起来更像链接 */
   cursor: pointer !important;
+  font-size: 0.85rem !important;
+  color: #4a90e2 !important; /* 蓝色，像个正经链接 */
   text-decoration: none !important;
 }
 
-/* 4. 重点：删掉我们之前多加的那个“假回复”内容 */
-.tk-action-link::after {
-  content: "" !important;  /* 把那个假的删了 */
+/* 4. 关键：把原本的图标隐藏，换成纯文字 */
+.tk-action-icon {
+  display: none !important; /* 杀掉那个乱跳的图标 */
+}
+
+/* 5. 最终杀招：强行在点击区域写上“回复”二字 */
+.tk-action-link::before {
+  content: "回复" !important; /* 既然原生的不出来，我们就亲手写上去 */
+  display: inline-block !important;
+  visibility: visible !important;
 }
 </style>
 

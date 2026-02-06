@@ -2239,32 +2239,3 @@ input[type=checkbox] {
     margin-left: 1rem;
   }
 }
-/* 1. 彻底隐藏：头像、点赞、图标、杂项标签 */
-.tk-avatar,
-.tk-submit-avatar,
-.tk-icon-like,
-.tk-action-count,
-.tk-action-icon,
-.tk-tag,
-.tk-comment-helper-avatar {
-  display: none !important;
-}
-/* 2. 内容靠左 */
-.tk-content {
-  margin-left: 0 !important;
-}
-/* 3. 优雅的“回复”按钮 */
-.tk-action-link {
-  font-size: 0.8rem !important /* 字体小一点 */;
-  color: #bbb !important /* 浅灰色，不抢戏 */;
-  cursor: pointer !important;
-  visibility: visible !important;
-  display: inline-block !important;
-  margin-top: 8px;
-  transition: 0.3s;
-}
-/* 4. 鼠标指上去时，稍微变深一点，给个反馈 */
-.tk-action-link:hover {
-  color: #1551a3 !important /* 这里的颜色可以根据你主题的主色调改 */;
-  text-decoration: underline;
-}

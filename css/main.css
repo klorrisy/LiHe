@@ -2239,3 +2239,13 @@ input[type=checkbox] {
     margin-left: 1rem;
   }
 }
+/* 彻底隐藏 Twikoo 评论区所有头像 */
+.tk-avatar,
+.tk-submit-avatar,
+.tk-comment-helper-avatar {
+  display: none !important;
+}
+/* 让评论内容靠左对齐 */
+.tk-content {
+  margin-left: 0 !important;
+}

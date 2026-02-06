@@ -354,7 +354,7 @@
             </div>
 
             <style>
-/* 1. 彻底切除：头像、点赞、标签、所有计数 */
+/* 1. 基础清理：头像、点赞、标签、计数通通消失 */
 .tk-avatar, .tk-submit-avatar, .tk-icon-like, .tk-action-count, .tk-tag {
   display: none !important;
 }
@@ -364,28 +364,27 @@
   margin-left: 0 !important;
 }
 
-/* 3. 关键：把回复按钮里所有原生的文字、图标全部变透明并缩小到 0 */
-.tk-action-link {
-  display: inline-block !important;
-  visibility: visible !important;
-  font-size: 0 !important;       /* 让原生的两个回复文字消失 */
-  color: transparent !important; /* 让原生的文字彻底看不见 */
-  cursor: pointer !important;
-  text-decoration: none !important;
-}
-
-/* 4. 隐藏回复按钮里的那个图标占位符 */
+/* 3. 隐藏所有图标 */
 .tk-action-icon {
   display: none !important;
 }
 
-/* 5. 唯一生还者：亲手画出这一个蓝色的“回复” */
-.tk-action-link::before {
-  content: "回复" !important;    /* 亲手写上去，全网页仅此一个 */
-  font-size: 0.85rem !important; /* 重新给它大小，让它显形 */
-  color: #4a90e2 !important;     /* 给它蓝色 */
-  visibility: visible !important;
+/* 4. 【核心招式】处理那两个讨厌的回复重影 */
+.tk-action-link {
   display: inline-block !important;
+  font-size: 0.85rem !important;
+  color: #4a90e2 !important;
+  text-decoration: none !important;
+}
+
+/* 只要是第二个及以后的文字块，通通人间蒸发 */
+.tk-action-link + .tk-action-link {
+  display: none !important;
+}
+
+/* 5. 万一它还是两个，强制清理掉我们之前加的所有 content */
+.tk-action-link::before, .tk-action-link::after {
+  content: none !important;
 }
 </style>
 

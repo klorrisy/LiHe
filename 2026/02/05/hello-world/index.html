@@ -365,28 +365,31 @@
               
             </div>
 
-            <style>
-/* 1. 隐藏所有用户头像 */
-.tk-avatar {
-    display: none !important;
-}
-
-/* 2. 隐藏点赞图标及计数 */
-.tk-action-icon.icon-like, 
-.tk-action-count {
-    display: none !important;
-}
-
-/* 3. 确保回复按钮正常显示（防止误伤） */
-.tk-action-link {
-    display: inline-flex !important;
-}
-
-/* 4. 修正因为没有头像导致的评论内容缩进问题 */
-.tk-main {
-    margin-left: 0 !important;
-}
-</style>
+                  twikoo.init(options);
+      
+      // --- 新加的代码开始 ---
+      // 这是一个监视器，一旦评论加载出来，就立刻切除点赞和头像
+      const observer = new MutationObserver(() => {
+        const avatar = document.querySelectorAll('.tk-avatar');
+        const actions = document.querySelectorAll('.tk-action-link');
+        
+        // 隐藏头像
+        avatar.forEach(el => el.style.display = 'none');
+        
+        // 专门针对点赞图标：通常第一个 tk-action-link 是点赞
+        actions.forEach(el => {
+          if (el.innerHTML.includes('like') || el.querySelector('.icon-like')) {
+            el.style.display = 'none';
+          }
+        });
+        
+        // 修正内容间距
+        const mains = document.querySelectorAll('.tk-main');
+        mains.forEach(el => el.style.marginLeft = '0');
+      });
+      
+      observer.observe(document.getElementById('twikoo'), { childList: true, subtree: true });
+      // --- 新加的代码结束 ---
 
 
   

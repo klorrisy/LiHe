@@ -2247,3 +2247,18 @@ input[type=checkbox] {
 .tk-content {
   margin-left: 0 !important;
 }
+/* 隐藏点赞、回复图标和文字 */
+.tk-action-icon,
+.tk-action-count {
+  display: none !important;
+}
+/* 隐藏评论框下的 Markdown 标志和预览按钮 */
+.tk-submit-action-icon,
+.tk-preview-container,
+.tk-preview {
+  display: none !important;
+}
+/* 隐藏评论之间多余的小圆点或其他分隔符 */
+.tk-tag {
+  display: none !important;
+}

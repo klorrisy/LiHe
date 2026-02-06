@@ -365,7 +365,27 @@
               
             </div>
 
-            
+            <style>
+  /* 暴力隐藏：头像、点赞相关所有图标和计数 */
+  .tk-avatar, .tk-submit-avatar, .tk-icon-like, .tk-action-count, .tk-action-icon, .tk-tag {
+    display: none !important;
+  }
+  /* 强制拉回内容：让评论文字不再给消失的头像留位置 */
+  .tk-content {
+    margin-left: 0 !important;
+  }
+  /* 守护“回复”文字：确保它不被任何隐藏规则误伤 */
+  .tk-action-link {
+    display: inline-block !important;
+    visibility: visible !important;
+    font-size: 0.8rem !important;
+    color: #999 !important;
+    cursor: pointer !important;
+    margin-top: 5px !important;
+  }
+</style>
+
+
   
   
     <article id="comments" lazyload>

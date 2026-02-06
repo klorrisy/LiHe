@@ -2239,28 +2239,26 @@ input[type=checkbox] {
     margin-left: 1rem;
   }
 }
+/* 1. 彻底隐藏：头像、点赞、气泡图标、杂项标签 */
 .tk-avatar,
 .tk-submit-avatar,
-.tk-comment-helper-avatar {
-  display: none !important;
-}
-.tk-content {
-  margin-left: 0 !important;
-}
-/* 1. 彻底隐藏所有图标、点赞、回复按钮 */
 .tk-icon-like,
 .tk-action-count,
 .tk-action-icon,
-.tk-action-link,
-.tk-tag {
+.tk-tag,
+.tk-comment-helper-avatar {
   display: none !important;
 }
-/* 2. 让整条评论区域变成可以点击的状态 */
+/* 2. 让评论内容靠左，填补头像空位 */
 .tk-content {
-  cursor: pointer !important;
   margin-left: 0 !important;
 }
-/* 3. (可选) 鼠标指上去时，背景颜色轻微变一下，提醒你这里可以点 */
-.tk-content:hover {
-  background-color: rgba(0,0,0,0.02);
+/* 3. 恢复并极简化回复按钮：让它变成淡灰色的文字 */
+.tk-action-link {
+  display: inline-block !important;
+  visibility: visible !important;
+  font-size: 0.75rem !important;
+  color: #d0d0d0 !important /* 极浅的灰色 */;
+  cursor: pointer !important;
+  margin-top: 5px;
 }

@@ -366,30 +366,15 @@
             </div>
 
                   twikoo.init(options);
-      
-      // --- 新加的代码开始 ---
-      // 这是一个监视器，一旦评论加载出来，就立刻切除点赞和头像
-      const observer = new MutationObserver(() => {
-        const avatar = document.querySelectorAll('.tk-avatar');
-        const actions = document.querySelectorAll('.tk-action-link');
-        
-        // 隐藏头像
-        avatar.forEach(el => el.style.display = 'none');
-        
-        // 专门针对点赞图标：通常第一个 tk-action-link 是点赞
-        actions.forEach(el => {
-          if (el.innerHTML.includes('like') || el.querySelector('.icon-like')) {
-            el.style.display = 'none';
-          }
-        });
-        
-        // 修正内容间距
-        const mains = document.querySelectorAll('.tk-main');
-        mains.forEach(el => el.style.marginLeft = '0');
-      });
-      
-      observer.observe(document.getElementById('twikoo'), { childList: true, subtree: true });
-      // --- 新加的代码结束 ---
+      // 这里的代码会自动运行，不会显示在页面上
+      const style = document.createElement('style');
+      style.innerHTML = `
+        .tk-avatar { display: none !important; }
+        .tk-action-link:first-child { display: none !important; }
+        .tk-action-count { display: none !important; }
+        .tk-main { margin-left: 0 !important; }
+      `;
+      document.head.appendChild(style);
 
 
   

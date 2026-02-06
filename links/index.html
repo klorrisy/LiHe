@@ -277,45 +277,37 @@
 
 
 <style>
-  /* 1. 物理切除：头像、计数、标签 */
+  /* 1. 物理清理：头像、计数、标签 */
   .tk-avatar, .tk-submit-avatar, .tk-tag, .tk-action-count {
     display: none !important;
   }
   
-  /* 2. 布局：评论内容靠左 */
+  /* 2. 内容靠左 */
   .tk-content { margin-left: 0 !important; }
 
-  /* 3. 隐藏所有“图标”，只留文字 */
+  /* 3. 隐藏所有图标 */
   .tk-action-icon {
     display: none !important;
   }
 
-  /* 4. 重点：处理回复区域 */
-  .tk-action {
-    display: flex !important;
-    gap: 10px;
+  /* 4. 【核心改动】处理点赞和回复 */
+  /* 我们不删第一个，我们只是把它变得像空气一样 */
+  .tk-action-link:first-child {
+    position: absolute !important;
+    opacity: 0 !important;          /* 彻底透明 */
+    width: 0 !important;            /* 宽度为0 */
+    height: 0 !important;           /* 高度为0 */
+    overflow: hidden !important;    /* 溢出隐藏 */
+    pointer-events: none !important; /* 不可点击，不挡路 */
   }
 
-  /* 既然分不清谁是谁，我们就让所有链接先变成蓝色小字 */
-  .tk-action-link {
+  /* 5. 确保真回复（第二个）显眼 */
+  .tk-action-link:nth-child(2) {
     display: inline-block !important;
     visibility: visible !important;
     color: #4a90e2 !important;
     font-size: 0.85rem !important;
-    cursor: pointer !important;
-  }
-
-  /* 5. 暴力破解：通过文字内容来判断！ */
-  /* 如果按钮里原本带有点赞图标的，我们让它变成 0 像素；
-     虽然我们看不见它是点赞还是回复，但我们可以通过“排除法” */
-  
-  /* 如果你现在的页面依然是“两个回复”，说明它们都叫回复。
-     那我们就强制让第一个消失，让第二个显示。 */
-  .tk-action > span:first-child {
-    display: none !important;
-  }
-  .tk-action > span:nth-child(2) {
-    display: inline-block !important;
+    margin-left: 0 !important;
   }
 </style>
 

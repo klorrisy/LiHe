@@ -49,7 +49,7 @@ body {
     box-shadow: none !important;
     border: none !important;
     /* 默认设为手机模式：左右只留一点点呼吸感 */
-    padding: 30px 15px !important; 
+    padding: 15px 15px !important; 
 }
 
 /* 电脑大屏时，恢复你最满意的黄金留白 */
@@ -91,4 +91,121 @@ body {
     max-width: 100% !important;
     width: 100% !important;
     color: var(--text-color) !important;
+}
+
+/* --- 强迫症终极红线对齐版 --- */
+
+/* 1. 全设备通用：清空所有可能导致错位的内边距 */
+.index-card, 
+.post-content, 
+.post-title, 
+.index-header,
+.index-excerpt,
+#twikoo,
+.tk-comments {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* 2. 手机端：统一设置“红线”位置 */
+@media (max-width: 767px) {
+    /* 直接在最外层的板子（board）上统一定义左边距 */
+    /* 这样里面的所有文字都会贴着这条红线排队 */
+    #board {
+        padding-left: 15px !important; /* 这就是你红线的位置，可以根据喜好微调 */
+        padding-right: 15px !important;
+        background-color: var(--eye-green) !important;
+    }
+
+    /* 首页标题字号稍微调一下，让它看起来更精致 */
+    .index-header {
+        font-size: 1.1rem !important;
+        margin-bottom: 10px !important;
+    }
+}
+
+/* 3. 电脑端：保持你想要的比例，但也确保左侧对齐 */
+@media (min-width: 992px) {
+    #board {
+        padding-left: 25% !important; /* 电脑端红线位置 */
+        padding-right: 25% !important;
+    }
+}
+
+/* 电脑端：不动 */
+@media (min-width: 992px) {
+    #board { padding: 60px 15% !important; }
+}
+
+/* --- 极致纯绿：消灭卡片感，全站视觉统一 --- */
+
+/* 1. 定义一个你最喜欢的护眼绿（统一色号） */
+:root {
+    --eye-green: #e8f5e9; 
+}
+
+/* 2. 强行让所有容器、背景、卡片全部变成同一个颜色 */
+html, body, #board, .header-inner, footer,
+.index-card, 
+article.post-content, 
+.post-inner,
+.tk-submit, 
+.tk-comments,
+.modal-content,
+.container-fluid {
+    background-color: var(--eye-green) !important;
+    background: var(--eye-green) !important; /* 确保渐变背景也被覆盖 */
+}
+
+/* 3. 彻底删除卡片的视觉特征：去掉阴影和边框 */
+.index-card, 
+article.post-content, 
+.post-inner,
+.tk-submit, 
+.tk-comments {
+    box-shadow: none !important;      /* 删掉阴影 */
+    border: none !important;          /* 删掉边框 */
+    margin-bottom: 0 !important;      /* 缩小卡片间的缝隙，让它们连成一片 */
+}
+
+/* 4. 细节微调：评论输入框还是需要极淡的描边，不然你找不到在哪打字 */
+.tk-input {
+    background-color: #f1f8f1 !important; /* 给输入框稍微留一点点色差 */
+    border: 1px solid #c8e6c9 !important;
+}
+
+/* 5. 适配电脑端：确保两侧的空白也是同一个绿 */
+@media (min-width: 992px) {
+    #board {
+        box-shadow: none !important;
+    }
+}
+
+/* --- 首页紧凑版对齐方案 --- */
+
+/* 1. 缩短文章之间的垂直距离 */
+.index-card {
+    background-color: transparent !important;
+    /* 这条线你可以保留，也可以稍微调浅一点 */
+    border-bottom: 1px solid rgba(200, 230, 201, 0.5) !important; 
+    
+    /* 这里是关键：从 40px 改成 20px 左右，文章就会立刻贴近 */
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    margin: 0 !important;
+}
+
+/* 2. 进一步优化：让标题和正文摘要之间也近一点 */
+.index-header {
+    margin-bottom: 5px !important; /* 缩小标题和摘要之间的缝隙 */
+}
+
+/* 3. 首页整体对齐逻辑（保持你的红线，不要动它） */
+@media (max-width: 767px) {
+    #board {
+        padding-left: 15px !important; 
+        padding-right: 15px !important;
+    }
 }

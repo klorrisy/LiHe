@@ -139,48 +139,44 @@ body {
     #board { padding: 60px 15% !important; }
 }
 
-/* --- 极致纯绿：消灭卡片感，全站视觉统一 --- */
+/* --- 修复夜间模式：智能绿色背景 --- */
 
-/* 1. 定义一个你最喜欢的护眼绿（统一色号） */
+/* 1. 定义白天和黑夜的变量 */
 :root {
-    --eye-green: #e8f5e9; 
+    --eye-green: #e8f5e9; /* 你的护眼绿 */
 }
 
-/* 2. 强行让所有容器、背景、卡片全部变成同一个颜色 */
-html, body, #board, .header-inner, footer,
-.index-card, 
-article.post-content, 
-.post-inner,
-.tk-submit, 
-.tk-comments,
-.modal-content,
-.container-fluid {
+/* 2. 关键：只在非夜间模式（即白天）下应用绿色 */
+[data-user-color-scheme="light"] body, 
+[data-user-color-scheme="light"] #board, 
+[data-user-color-scheme="light"] .header-inner,
+[data-user-color-scheme="light"] .index-card,
+[data-user-color-scheme="light"] article.post-content,
+[data-user-color-scheme="light"] .tk-comments {
     background-color: var(--eye-green) !important;
-    background: var(--eye-green) !important; /* 确保渐变背景也被覆盖 */
+    background: var(--eye-green) !important;
 }
 
-/* 3. 彻底删除卡片的视觉特征：去掉阴影和边框 */
+/* 3. 针对夜间模式：确保它能变回深色（通常 Fluid 会自动处理，这里是双保险） */
+[data-user-color-scheme="dark"] body, 
+[data-user-color-scheme="dark"] #board {
+    /* 这里不写 !important，让主题自带的深色配置生效 */
+}
+
+/* 4. 无论昼夜都保持“无卡片感”：去掉阴影和边框 */
 .index-card, 
 article.post-content, 
 .post-inner,
 .tk-submit, 
 .tk-comments {
-    box-shadow: none !important;      /* 删掉阴影 */
-    border: none !important;          /* 删掉边框 */
-    margin-bottom: 0 !important;      /* 缩小卡片间的缝隙，让它们连成一片 */
+    box-shadow: none !important;
+    border: none !important;
 }
 
-/* 4. 细节微调：评论输入框还是需要极淡的描边，不然你找不到在哪打字 */
-.tk-input {
-    background-color: #f1f8f1 !important; /* 给输入框稍微留一点点色差 */
-    border: 1px solid #c8e6c9 !important;
-}
-
-/* 5. 适配电脑端：确保两侧的空白也是同一个绿 */
-@media (min-width: 992px) {
-    #board {
-        box-shadow: none !important;
-    }
+/* 5. 评论框的边框也要适配夜间模式，不然黑天会有一个白框 */
+[data-user-color-scheme="dark"] .tk-input {
+    background-color: #2b2b2b !important;
+    border: 1px solid #444 !important;
 }
 
 /* --- 首页紧凑版对齐方案 --- */

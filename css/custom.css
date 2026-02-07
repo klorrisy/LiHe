@@ -139,44 +139,41 @@ body {
     #board { padding: 60px 15% !important; }
 }
 
-/* --- 修复夜间模式：智能绿色背景 --- */
+/* 1. 核心修复：把绿色背景从全局强行剥离 */
 
-/* 1. 定义白天和黑夜的变量 */
-:root {
-    --eye-green: #e8f5e9; /* 你的护眼绿 */
+/* --- 白天模式：强制刷绿 --- */
+body:not(.dark-mode), 
+#board:not(.dark-mode),
+[data-user-color-scheme="light"] body,
+[data-user-color-scheme="light"] #board {
+    background-color: #e8f5e9 !important; /* 你的护眼绿 */
+    background: #e8f5e9 !important;
 }
 
-/* 2. 关键：只在非夜间模式（即白天）下应用绿色 */
-[data-user-color-scheme="light"] body, 
-[data-user-color-scheme="light"] #board, 
-[data-user-color-scheme="light"] .header-inner,
-[data-user-color-scheme="light"] .index-card,
-[data-user-color-scheme="light"] article.post-content,
-[data-user-color-scheme="light"] .tk-comments {
-    background-color: var(--eye-green) !important;
-    background: var(--eye-green) !important;
+/* --- 夜间模式：强制回归深色 --- */
+/* 当检测到深色模式标签时，把绿色彻底杀掉 */
+body.dark-mode, 
+[data-user-color-scheme="dark"] body,
+[data-user-color-scheme="dark"] #board,
+[data-user-color-scheme="dark"] .header-inner,
+[data-user-color-scheme="dark"] .index-card {
+    background-color: #1d1e22 !important; /* 强制变回深黑/深灰 */
+    background: #1d1e22 !important;
 }
 
-/* 3. 针对夜间模式：确保它能变回深色（通常 Fluid 会自动处理，这里是双保险） */
-[data-user-color-scheme="dark"] body, 
-[data-user-color-scheme="dark"] #board {
-    /* 这里不写 !important，让主题自带的深色配置生效 */
+/* 2. 针对手机端的特殊照顾 */
+/* 如果手机浏览器比较旧，不认上面的标签，我们就用系统级的黑夜检测 */
+@media (prefers-color-scheme: dark) {
+    body, #board {
+        background-color: #1d1e22 !important;
+    }
 }
 
-/* 4. 无论昼夜都保持“无卡片感”：去掉阴影和边框 */
-.index-card, 
-article.post-content, 
-.post-inner,
-.tk-submit, 
-.tk-comments {
+/* 3. 统一删除阴影（无论昼夜都要干净） */
+.index-card, article.post-content, .post-inner {
     box-shadow: none !important;
     border: none !important;
-}
-
-/* 5. 评论框的边框也要适配夜间模式，不然黑天会有一个白框 */
-[data-user-color-scheme="dark"] .tk-input {
-    background-color: #2b2b2b !important;
-    border: 1px solid #444 !important;
+    background: transparent !important; /* 让它透明，直接显示底下的颜色 */
 }
 
 /* --- 首页紧凑版对齐方案 --- */

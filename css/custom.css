@@ -83,3 +83,11 @@ body {
     width: 100% !important;
     color: var(--text-color) !important;
 }
+
+/* 专门缩小手机端标题的大小 */
+@media (max-width: 767px) {
+    .index-header, .post-content h1, .h2 {
+        font-size: 1.1rem !important; /* 调整这个数字可以控制大小，1.1 是比较秀气的 */
+        line-height: 1.4 !important;
+    }
+}
